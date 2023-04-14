@@ -2,6 +2,9 @@ import App from "../App";
 import AboutPage from "../pages/about/about-page";
 import NotFound from "../pages/errors/not-found-page";
 import HomePage from "../pages/home/home-page";
+import ProductCreatePage from "../pages/products/pages/product-create.page";
+import ProductDetailPage from "../pages/products/pages/product-details";
+import ProductList from "../pages/products/pages/product-list";
 import ProductPage from "../pages/products/product.page";
 
 export const route = [
@@ -23,8 +26,22 @@ export const route = [
         element: <NotFound />,
       },
       {
-        path: "products",
-        element: <ProductPage />
+        path: 'products',
+        element: <ProductPage />,
+        children: [
+          {
+            index: true,
+            element: <ProductList />
+          },
+          {
+            path: ':productId',
+            element: <ProductDetailPage />
+          },
+          {
+            path: 'create',
+            element: <ProductCreatePage />
+          }
+        ]
       },
     ],
   },

@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "name": "product 1",
+        "code": "eee5896",
+        "description": "le produit 1",
+        "price": 42,
+        "discount": null,
+        "inStock": true
+
+    },
+    {
+        "id": 2,
+        "name": "product 2",
+        "code": "zz00123",
+        "description": "le produit 2",
+        "price": 100,
+        "discount": 25,
+        "inStock": true
+
+    },
+    {
+        "id": 3,
+        "name": "product 3",
+        "code": "dsdsd555",
+        "description": "le produit 3",
+        "price": 999.94,
+        "discount": null,
+        "inStock": false
+
+    }
+
+]
