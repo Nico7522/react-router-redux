@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import PriceDisplay from "../../components/price-display/price-display";
-import mockup from "./data-mockup.json";
 import { useNavigate } from "react-router-dom";
-import style from './product.module.css'
+import style from "./product.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { productDelete } from "../../store/actions/product.action";
 const ProductTableHead = () => (
   <thead>
     <tr>
@@ -23,9 +24,9 @@ const ProductTableRow = ({
   discount,
   onDetail,
   onRemove,
-  id
+  id,
 }) => (
-  <tr >
+  <tr>
     <td onClick={() => onDetail(id)}>{name}</td>
     <td onClick={() => onDetail(id)}>{code}</td>
     <td>
@@ -42,22 +43,31 @@ const ProductTableRow = ({
 
 const ProductPage = () => {
   const navigate = useNavigate();
-  const products = mockup;
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.product.products);
   const handleDetail = useCallback((id) => {
     // TODO
-    navigate('/products/' + id)
-  })
+    navigate("/products/" + id);
+  });
   const handleRemove = useCallback((id) => {
-    // TODO
-    console.log('Remove product', id);
-  })
+    console.log(products);
+    const actionDelete = productDelete(id);
+    dispatch(actionDelete);
+  });
 
   return (
-    <table className={style['product-table']}>
+    <table className={style["product-table"]}>
       <ProductTableHead />
       <tbody>
-        {products.map(product => (
-            <ProductTableRow {...product} key={product.id} onDetail={handleDetail} onRemove={handleRemove} />
+        {products.map((product) => (
+          <ProductTableRow
+            {...product}
+            key={product.id}
+            onDetail={handleDetail}
+            onRemove={handleRemove}
+          />
         ))}
       </tbody>
     </table>

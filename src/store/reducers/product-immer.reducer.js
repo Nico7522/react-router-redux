@@ -25,9 +25,9 @@ const productReducerImmer = createReducer(initialState, (builder) => {
         state.count++
     })
     .addCase(productDelete, (state, action) => {
-        const productId = action.payload
+        const productId = action.payload;
 
-        state.products = state.products.filter(p => p.id !== productId.id)
+        state.products = state.products.filter(product => product.id !== productId.id )
         state.count = state.products.length
      
     })

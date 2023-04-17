@@ -1,9 +1,14 @@
 import PriceDisplay from "../../components/price-display/price-display";
 import mockup from "./data-mockup.json";
+import { useSelector } from 'react-redux'
 
 const ProductDetail = ({ productId }) => {
-  const product = mockup[productId-1];
+  
+  const product = useSelector(state => state.product.products.find(p => p.id === productId));
 
+  if (!product) {
+    return <p>Produit non trouvé</p>
+  }
   return (
     <>
       <p>

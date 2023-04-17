@@ -3,22 +3,28 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from "react-router-dom";
 import { useId } from "react";
+import { useDispatch } from 'react-redux'
+import { productCreate } from "../../store/actions/product.action";
+
 const productSchema = yup
   .object({
     name: yup.string().trim().required(),
     code: yup
       .string()
-      .matches(/^[a-z]{4}[0-9]{3}$/i)
+      // .matches(/^[a-z]{4}[0-9]{3}$/i)
       .required(),
     description: yup.string(),
     price: yup.number().positive().required(),
-    discount: yup.number().positive(),
+    discount: yup.number().transform((value, original) => original === '' ? null : value).positive().nullable(),
     inStock: yup.boolean().required(),
   })
   .required();
 
+
+
 const ProductForm = () => {
-  const {
+  const dispatch = useDispatch();
+  const  {
     register,
     handleSubmit,
     formState: { errors }, 
@@ -32,6 +38,8 @@ const ProductForm = () => {
 
   const handleProductSubmit = (product) => {
     // TODO Use store to add product
+    console.log(product);
+    dispatch(productCreate(product))
     navigate("/products");
     
   };
@@ -46,7 +54,7 @@ const ProductForm = () => {
           onReset={handleProductReset}>
       <div>
         <label htmlFor={idForm+'name'}>Nom</label>
-        <input id={idForm+'name'} type="text" {...register('nom')} />
+        <input id={idForm+'name'} type="text" {...register('name')} />
         { errors.name && ( <span>{errors.name.message}</span>) }
       </div>
       <div>
@@ -56,12 +64,12 @@ const ProductForm = () => {
       </div>
       <div>
         <label htmlFor={idForm+'desc'}>Description</label>
-        <textarea name="" id={idForm+'desc'} {...register('desc')}></textarea>
+        <textarea name="" id={idForm+'desc'} {...register('description')}></textarea>
         { errors.description && ( <span>{errors.description.message}</span>) }
       </div>
       <div>
         <label htmlFor={idForm+'prix'}>Prix</label>
-        <input id={idForm+'prix'} type="text" {...register('prix')} />
+        <input id={idForm+'prix'} type="text" {...register('price')} />
         { errors.price && ( <span>{errors.price.message}</span>) }
       </div>
       <div>
@@ -71,7 +79,7 @@ const ProductForm = () => {
       </div>
       <div>
         <label htmlFor={idForm+'stock'}>Stock</label>
-        <input id={idForm+'stock'} type="checkbox" {...register('stock')} />
+        <input id={idForm+'stock'} type="checkbox" {...register('inStock')} />
         { errors.inStock && ( <span>{errors.inStock.message}</span>) }
       </div>
       <div>

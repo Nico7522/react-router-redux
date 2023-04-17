@@ -13,4 +13,4 @@ export const productCreate = createAction('product/create', (product) => {
 
 
 // Suppression
-export const productDelete = createAction('product/remove')
+export const productDelete = createAction('product/delete')

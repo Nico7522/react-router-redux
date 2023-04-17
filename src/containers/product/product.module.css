@@ -1,6 +1,17 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(Nice_Sugar.otf);
+}
+
 .product-table {
     border: 2px solid navy;
     border-collapse: collapse;
+    font-family: myFirstFont;
+  }
+
+   tr > th:last-child {
+   width: 145%;
+
   }
   
   .product-table tr:nth-child(2n +1) {
@@ -18,8 +29,9 @@
   }
   
   .product-table th, .product-table td {
-    padding: 0.5rem;
+    padding: 0.4rem;
   }
   .product-table >  thead    {
     margin: 5px;
   }
+

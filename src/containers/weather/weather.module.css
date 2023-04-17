@@ -1,0 +1,26 @@
+.weather-day {
+    background-color: rgb(202, 191, 93);
+    color: black;
+}
+
+.weather-night {
+    background: dimgray;;
+    color: snow;
+}
+
+.weather-results {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7em;
+    list-style: none;
+    height: 18rem;
+}
+
+.weather-item {
+    width: 10rem;
+    border: 1px solid black;
+}
+
+.weather-title {
+    font-size: 2.2rem;
+}

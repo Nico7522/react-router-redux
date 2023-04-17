@@ -29,7 +29,7 @@ const productReducer = createReducer(initialState, (builder) => {
     })
     .addCase(productDelete, (state, action) => {
         const productId = action.payload
-        const products = state.products.filter(p => p.id !== productId.id)
+        const products = state.products.filter(p => (p.id !== productId.id))
         return {
             ...state,
             count: products.length,
