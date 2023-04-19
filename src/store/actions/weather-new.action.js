@@ -7,4 +7,15 @@ export const weatherForecastActionFetch = createAsyncThunk(
     async (city) => {
        return await fetchWeatherForecast(city);
     }
+);
+
+export const weatherForecastActionReload = createAsyncThunk(
+    'weather/reload',
+    async(arg, thunkAPI) => {
+        const city = thunkAPI.getState().weather?.result?.city
+
+        if (city) {
+            thunkAPI.dispatch(weatherForecastActionFetch(city))
+        }
+    } 
 )

@@ -1,3 +1,5 @@
+import ProgressBar from "../../components/progress-bar/progress-bar";
+
 const HomePage = () => {
   return (
     <>
@@ -7,6 +9,8 @@ const HomePage = () => {
         perferendis quis optio officiis enim libero aliquam iusto numquam
         nesciunt quasi necessitatibus aut unde aspernatur est! Quasi laudantium
         saepe nesciunt similique?
+        <h2>Demo Progress bar</h2>
+        <ProgressBar val={10} />
       </p>
     </>
   );
